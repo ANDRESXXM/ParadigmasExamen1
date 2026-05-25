@@ -6,9 +6,9 @@ import javafx.scene.control.*;
 public class PrimaryController {
 
 	@FXML
-	private TextField txtCodigo;
+	private TextField txtCodigoExamen;
 	@FXML
-	private TextField txtNombrepaciente;
+	private TextField txtNombrePaciente;
 	@FXML
 	private TextField txtCosto;
 	@FXML

@@ -5,6 +5,7 @@ import co.edu.poli.modelo.Examenrayosx;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+ 
 
 public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> {
  
@@ -16,7 +17,7 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
         this.listaExamenes = new ArrayList<>();
     }
  
-  
+    
     public void create(Examenrayosx examen) {
         if (examen == null) {
             throw new IllegalArgumentException("El examen no puede ser nulo.");
@@ -28,6 +29,7 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
         listaExamenes.add(examen);
     }
  
+  
     public Examenrayosx read(String codigo) {
         return listaExamenes.stream()
                 .filter(e -> e.getCodigo().equalsIgnoreCase(codigo))
@@ -35,7 +37,7 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
                 .orElse(null);
     }
  
- 
+   
     public boolean update(Examenrayosx examenActualizado) {
         for (int i = 0; i < listaExamenes.size(); i++) {
             if (listaExamenes.get(i).getCodigo()
@@ -47,18 +49,17 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
         return false;
     }
  
-
+  
     public boolean delete(String codigo) {
         return listaExamenes.removeIf(
                 e -> e.getCodigo().equalsIgnoreCase(codigo));
     }
  
- 
     public List<Examenrayosx> list() {
         return new ArrayList<>(listaExamenes);
     }
  
-  
+   
     public void serializar() throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(ARCHIVO_DATOS))) {
@@ -66,7 +67,7 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
         }
     }
  
-  
+
     @SuppressWarnings("unchecked")
     public void deserializar() throws IOException, ClassNotFoundException {
         File archivo = new File(ARCHIVO_DATOS);
@@ -81,11 +82,11 @@ public class Implementacionoperacioncrud implements Operacioncrud<Examenrayosx> 
         }
     }
  
+  
     public boolean existeArchivo() {
         return new File(ARCHIVO_DATOS).exists();
     }
  
-  
     public int total() {
         return listaExamenes.size();
     }
